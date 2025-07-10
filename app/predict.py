@@ -12,16 +12,39 @@ def app(input_data):
     cols = st.columns(2)
 
     def stream_data():
-        is_diabetes = f'Diabetes' if prediction >= thresholds else 'No Diabetes'
-        text = f"Model Accuracy: {accuracy_result}%\n\n"
+        is_diabetes = f'High Risk - Diabetes Indicated' if prediction >= thresholds else 'Low Risk - No Diabetes Indicated'
+        
+        # Model Performance Information
+        text = f"CareSync AI Model Performance\n"
         for word in text.split(" "):
             yield word + " "
             time.sleep(0.05)
-        text = f"\nPrediction: {is_diabetes}\n"
+        text = f"Clinical Accuracy: {accuracy_result}%\n\n"
         for word in text.split(" "):
             yield word + " "
             time.sleep(0.05)
-        text = f"\nProbability: {(prediction * 100).round(2)[0]}%\n"
+            
+        # Risk Assessment Result
+        text = f"Diabetes Risk Assessment Result:\n"
+        for word in text.split(" "):
+            yield word + " "
+            time.sleep(0.05)
+        text = f"{is_diabetes}\n\n"
+        for word in text.split(" "):
+            yield word + " "
+            time.sleep(0.05)
+            
+        # Probability Score
+        text = f"Risk Probability Score: {(prediction * 100).round(2)[0]}%\n\n"
+        for word in text.split(" "):
+            yield word + " "
+            time.sleep(0.05)
+            
+        # Clinical Recommendation
+        if prediction >= thresholds:
+            text = f"Clinical Recommendation: Consult healthcare provider for further evaluation.\n"
+        else:
+            text = f"Clinical Recommendation: Continue regular health monitoring and healthy lifestyle.\n"
         for word in text.split(" "):
             yield word + " "
             time.sleep(0.05)
@@ -31,13 +54,15 @@ def app(input_data):
     cols[0].write_stream(stream_data)
 
 
-    is_diabetes = f'<strong>Warning:</strong> Diabetes!' if prediction >= thresholds else 'No Diabetes'
-    color = f'red' if prediction >= thresholds else 'blue'
+    is_diabetes = f'<strong>⚠️ HIGH RISK</strong><br/>Diabetes Risk Detected<br/><small>Immediate medical consultation recommended</small>' if prediction >= thresholds else f'<strong>✅ LOW RISK</strong><br/>No Diabetes Risk Detected<br/><small>Continue preventive health measures</small>'
+    border_color = '#ef4444' if prediction >= thresholds else '#3b82f6'  # Red for diabetes, blue for no diabetes
+    text_color = '#ef4444' if prediction >= thresholds else '#3b82f6'  # Red for diabetes, blue for no diabetes
+    chart_color = 'red' if prediction >= thresholds else 'blue'
 
-    cols[1].markdown(mrk.format(color, is_diabetes), unsafe_allow_html=True)
+    cols[1].markdown(mrk.format(border_color, text_color, is_diabetes), unsafe_allow_html=True)
     cols[1].write('\n\n\n\n\n')
     donut_chart_population = make_donut((prediction * 100).round(2)[0], 
                                         'Diabetes Risk',
-                                        input_color=color)
+                                        input_color=chart_color)
 
     cols[1].altair_chart(donut_chart_population)

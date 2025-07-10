@@ -9,7 +9,10 @@ from function.function import make_donut
 
 
 def app():
-    st.markdown("### Model performance")
+    st.markdown("## 📊 Clinical Model Performance Metrics")
+    st.markdown("---")
+    st.markdown("### CareSync AI Diabetes Risk Assessment Model - Validation Results")
+    
     # Model score
     cols = st.columns(5)
     color = 'blue'

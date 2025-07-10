@@ -37,3 +37,7 @@ app()
 # About
 from app.about import app
 app()
+
+# Footer
+from app.footer import app
+app()

@@ -33,8 +33,10 @@ Your inputs:\n
 
     # Column 1: Stream user input
     with cols[0]:
-        st.markdown("### Input Streaming")
-        st.markdown("#### See your inputs in real-time below!")
+        st.markdown("## 📈 Patient Data Analysis")
+        st.markdown("---")
+        st.markdown("### Real-time Parameter Processing")
+        st.markdown("#### Your clinical parameters are being processed and analyzed below:")
         for word in stream_data():
             st.write(word)
 
@@ -55,12 +57,16 @@ Your inputs:\n
 
     # Column 2: SHAP Waterfall Plot
     with cols[1]:
-        st.markdown("### SHAP Waterfall Plot")
+        st.markdown("### 🔬 SHAP Clinical Feature Analysis")
         st.markdown(
             """
-            - 🟡 **Base Value**: Expected model prediction without considering input features.
-            - 🟡 **Feature Contributions**: Bars represent individual feature impact.
-            - 🟡 **Output Prediction**: Sum of base value and contributions gives final output.
+            **Clinical Interpretation Guide:**
+            - 🟡 **Baseline Risk**: Expected population risk without considering individual parameters
+            - 🟡 **Parameter Impact**: Each bar shows how your specific values affect diabetes risk
+            - 🟡 **Final Assessment**: Combined baseline and individual factors determine your risk score
+            
+            **Professional Use:** This analysis assists healthcare providers in understanding which clinical parameters 
+            are most significant for your individual diabetes risk profile.
             """
         )
         st.pyplot(fig)

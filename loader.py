@@ -2,6 +2,7 @@ import pandas as pd
 import joblib
 from PIL import Image
 from data.config import thresholds
+import os
 
 
 
@@ -11,13 +12,16 @@ from sklearn.metrics import (accuracy_score,
                              f1_score,
                              roc_auc_score)
 
-data = pd.read_csv('datasets/diabetes.csv')
+# Get the directory where this script is located
+current_dir = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(current_dir, 'datasets', 'diabetes.csv')
+data = pd.read_csv(data_path)
 X = data[['Pregnancies', 'Glucose', 'Insulin', 'BMI', 'Age']]
 y = data['Outcome']
 
-page_icon = Image.open("image/page_icon.jpeg")
+page_icon = Image.open(os.path.join(current_dir, "image", "page_icon.jpeg"))
 
-model = joblib.load('model.pkl')
+model = joblib.load(os.path.join(current_dir, 'model.pkl'))
 
 
 
