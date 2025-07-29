@@ -20,18 +20,18 @@ def app():
                 font-size: 14px;">
                     ❤️
                 </div>
-                <h3 style="color: #1f2937; margin: 0; font-size: 18px; font-weight: 600;">
+                <h3 style="color: #000000; margin: 0; font-size: 18px; font-weight: 600;">
                     CareSync
                 </h3>
             </div>
-            <p style="color: #6b7280; font-size: 12px; margin: 0;">
+            <p style="color: #000000; font-size: 12px; margin: 0; font-weight: 500;">
                 Clinical Assessment Portal
             </p>
         </div>
     """, unsafe_allow_html=True)
 
     # Clean parameter input section
-    st.sidebar.markdown("**Clinical Parameters**")
+    st.sidebar.markdown('<p style="color: #000000; font-weight: 600; font-size: 16px; margin-bottom: 8px;">Clinical Parameters</p>', unsafe_allow_html=True)
     st.sidebar.markdown("---")
 
     # Pregnancies
@@ -83,27 +83,27 @@ def app():
     # Professional divider
     st.sidebar.markdown("---")
     
-    # Minimal reference ranges
+    # Minimal reference ranges with better contrast
     st.sidebar.markdown("""
         <div style="background: #f8fafc; 
         padding: 12px; 
         border-radius: 6px; 
         border-left: 3px solid #3b82f6;">
-            <p style="color: #1f2937; font-size: 12px; margin: 0; font-weight: 600;">Reference Ranges</p>
-            <p style="color: #4b5563; font-size: 11px; margin: 4px 0 0 0;">
+            <p style="color: #000000; font-size: 12px; margin: 0; font-weight: 600;">Reference Ranges</p>
+            <p style="color: #000000; font-size: 11px; margin: 4px 0 0 0;">
                 Glucose: 70-100 mg/dL • BMI: 18.5-24.9 • Normal ranges for clinical reference
             </p>
         </div>
     """, unsafe_allow_html=True)
     
-    # Minimal disclaimer
+    # Minimal disclaimer with better contrast
     st.sidebar.markdown("""
         <div style="background: #fef2f2; 
         padding: 8px; 
         border-radius: 6px; 
         border-left: 3px solid #ef4444; 
         margin: 12px 0;">
-            <p style="color: #7f1d1d; font-size: 10px; margin: 0;">
+            <p style="color: #000000; font-size: 10px; margin: 0;">
                 <strong>Medical Disclaimer:</strong> For educational purposes. Consult healthcare professionals for medical advice.
             </p>
         </div>

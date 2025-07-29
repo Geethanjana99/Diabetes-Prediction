@@ -1,5 +1,18 @@
-st_style = """
-           <style>
+st_style = """           /* Sidebar styling */
+           .css-1d391kg {
+               background-color: white !important;
+               border-right: 2px solid #3b82f6 !important;
+           }
+           
+           /* Sidebar container */
+           .css-1lcbmhc {
+               background-color: white !important;
+           }
+           
+           /* Sidebar content area */
+           .css-17eq0hr {
+               background-color: white !important;
+           }        <style>
            #MainMenu {visibility: hidden;}
            footer {visibility: hidden;}
            header {visibility: hidden;}
@@ -14,8 +27,42 @@ st_style = """
            
            /* Sidebar styling */
            .css-1d391kg {
-               background-color: #f8fafc !important;
+               background-color: #ffffff !important;
                border-right: 2px solid #3b82f6 !important;
+           }
+           
+           /* Sidebar text styling */
+           .stSidebar .stMarkdown, .stSidebar .stText, .stSidebar p, .stSidebar div, .stSidebar span, .stSidebar label {
+               color: #000000 !important;
+               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+           }
+           
+           /* Comprehensive sidebar white background */
+           .stSidebar {
+               background-color: white !important;
+           }
+           
+           .stSidebar > div {
+               background-color: white !important;
+           }
+           
+           .stSidebar .stMarkdown {
+               background-color: white !important;
+           }
+           
+           /* Sidebar input containers */
+           .stSidebar .stNumberInput > div {
+               background-color: white !important;
+           }
+           
+           .stSidebar .stSelectbox > div {
+               background-color: white !important;
+           }
+           
+           /* Sidebar input labels */
+           .stSidebar .stNumberInput label, .stSidebar .stSelectbox label {
+               color: #000000 !important;
+               font-weight: 500 !important;
            }
            
            /* Text and content styling */
@@ -49,7 +96,7 @@ st_style = """
            /* Input field styling */
            .stNumberInput input, .stSelectbox select, .stSlider {
                background-color: white !important;
-               color: #1f2937 !important;
+               color: #000000 !important;
                border: 2px solid #e5e7eb !important;
                border-radius: 8px !important;
                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
@@ -58,6 +105,13 @@ st_style = """
            .stNumberInput input:focus, .stSelectbox select:focus {
                border-color: #3b82f6 !important;
                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+               color: #000000 !important;
+           }
+           
+           /* Sidebar specific input styling */
+           .stSidebar .stNumberInput input {
+               color: #000000 !important;
+               background-color: white !important;
            }
            
            /* Metric styling */
