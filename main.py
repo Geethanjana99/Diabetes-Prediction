@@ -1,13 +1,18 @@
-from function.function import *
 import streamlit as st
-from loader import page_icon
 
+# Clear any potential problematic session state
+if 'sidebar_toggle' in st.session_state:
+    del st.session_state['sidebar_toggle']
+
+# Initialize sidebar state
+if 'sidebar_state' not in st.session_state:
+    st.session_state.sidebar_state = "expanded"
 
 st.set_page_config(
-    page_title="Diabetes Prediction with AI",
-    page_icon=page_icon,
+    page_title="CareSync - Diabetes Risk Assessment",
+    page_icon="❤️",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state=st.session_state.sidebar_state
 )
 
 # Header

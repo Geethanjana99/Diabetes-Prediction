@@ -3,6 +3,30 @@ import pandas as pd
 
 
 def app():
+    # Check if sidebar should be displayed
+    if st.session_state.get('sidebar_state', 'expanded') == 'collapsed':
+        # Show panel button when sidebar is collapsed
+        col1, col2 = st.columns([2, 10])
+        with col1:
+            if st.button("☰ Show Panel", help="Show the sidebar", type="primary", key="sidebar_show_btn"):
+                st.session_state.sidebar_state = "expanded"
+                st.rerun()
+        
+        # Show a minimal floating input panel instead
+        with st.expander("📋 Clinical Parameters", expanded=False):
+            return create_input_form_compact()
+    
+    # Show full sidebar when expanded
+    return create_sidebar_form()
+
+def create_sidebar_form():
+    # Toggle button inside sidebar
+    if st.sidebar.button("✖ Hide Panel", help="Hide the sidebar", key="sidebar_hide_btn", use_container_width=True):
+        st.session_state.sidebar_state = "collapsed"
+        st.rerun()
+    
+    st.sidebar.markdown("---")
+    
     # Minimal CareSync branded header
     st.sidebar.markdown("""
         <div style="background: white; 
@@ -31,11 +55,38 @@ def app():
     """, unsafe_allow_html=True)
 
     # Clean parameter input section
-    st.sidebar.markdown('<p style="color: #000000; font-weight: 600; font-size: 16px; margin-bottom: 8px;">Clinical Parameters</p>', unsafe_allow_html=True)
+    st.sidebar.markdown("### Clinical Parameters")
     st.sidebar.markdown("---")
 
+    return create_input_controls(st.sidebar)
+
+def create_input_form_compact():
+    # Compact form for collapsed sidebar - organized in columns
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown("#### Basic Info")
+        pregnancies_value = st.number_input('Pregnancies', min_value=0, max_value=20, value=1)
+        age_value = st.number_input('Age (years)', min_value=0, max_value=100, value=25)
+        
+    with col2:
+        st.markdown("#### Measurements")
+        glucose_value = st.number_input('Glucose (mg/dL)', min_value=0, max_value=250, value=100)
+        bmi_value = st.number_input('BMI', min_value=0.0, max_value=100.0, value=37.0, format="%.1f")
+        
+    with col3:
+        st.markdown("#### Clinical Data")
+        insulin_value = st.number_input('Insulin (μU/mL)', min_value=0, max_value=1000, value=100)
+        
+        # Compact reference info
+        st.info("**Reference:** Glucose: 70-100 mg/dL")
+
+    return pd.DataFrame([[pregnancies_value, glucose_value, insulin_value, bmi_value, age_value]], 
+                        columns=['Pregnancies', 'Glucose', 'Insulin','BMI','Age'])
+
+def create_input_controls(container):
     # Pregnancies
-    pregnancies_value = st.sidebar.number_input(
+    pregnancies_value = container.number_input(
         'Pregnancies',
         min_value=0,
         max_value=20,
@@ -44,7 +95,7 @@ def app():
     )
 
     # Glucose
-    glucose_value = st.sidebar.number_input(
+    glucose_value = container.number_input(
         'Glucose (mg/dL)',
         min_value=0,
         max_value=250,
@@ -53,7 +104,7 @@ def app():
     )
 
     # Insulin
-    insulin_value = st.sidebar.number_input(
+    insulin_value = container.number_input(
         'Insulin (μU/mL)',
         min_value=0,
         max_value=1000,
@@ -62,7 +113,7 @@ def app():
     )
 
     # BMI
-    bmi_value = st.sidebar.number_input(
+    bmi_value = container.number_input(
         'BMI',
         min_value=0.0,
         max_value=100.0,
@@ -72,7 +123,7 @@ def app():
     )
 
     # Age
-    age_value = st.sidebar.number_input(
+    age_value = container.number_input(
         'Age (years)',
         min_value=0,
         max_value=100,
@@ -81,33 +132,13 @@ def app():
     )
 
     # Professional divider
-    st.sidebar.markdown("---")
+    container.markdown("---")
     
-    # Minimal reference ranges with better contrast
-    st.sidebar.markdown("""
-        <div style="background: #f8fafc; 
-        padding: 12px; 
-        border-radius: 6px; 
-        border-left: 3px solid #3b82f6;">
-            <p style="color: #000000; font-size: 12px; margin: 0; font-weight: 600;">Reference Ranges</p>
-            <p style="color: #000000; font-size: 11px; margin: 4px 0 0 0;">
-                Glucose: 70-100 mg/dL • BMI: 18.5-24.9 • Normal ranges for clinical reference
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
+    # Reference ranges
+    container.info("**Reference Ranges**  \nGlucose: 70-100 mg/dL • BMI: 18.5-24.9")
     
-    # Minimal disclaimer with better contrast
-    st.sidebar.markdown("""
-        <div style="background: #fef2f2; 
-        padding: 8px; 
-        border-radius: 6px; 
-        border-left: 3px solid #ef4444; 
-        margin: 12px 0;">
-            <p style="color: #000000; font-size: 10px; margin: 0;">
-                <strong>Medical Disclaimer:</strong> For educational purposes. Consult healthcare professionals for medical advice.
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
+    # Medical disclaimer
+    container.warning("**Medical Disclaimer:** For educational purposes. Consult healthcare professionals for medical advice.")
     
     return pd.DataFrame([[pregnancies_value, glucose_value, insulin_value, bmi_value, age_value]], 
                         columns=['Pregnancies', 'Glucose', 'Insulin','BMI','Age'])    

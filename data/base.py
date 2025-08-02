@@ -1,189 +1,154 @@
-st_style = """           /* Sidebar styling */
-           .css-1d391kg {
-               background-color: white !important;
-               border-right: 2px solid #3b82f6 !important;
-           }
-           
-           /* Sidebar container */
-           .css-1lcbmhc {
-               background-color: white !important;
-           }
-           
-           /* Sidebar content area */
-           .css-17eq0hr {
-               background-color: white !important;
-           }        <style>
-           #MainMenu {visibility: hidden;}
-           footer {visibility: hidden;}
-           header {visibility: hidden;}
-           div.block-container {padding-top:1rem;}
-           .css-ysnqb2 e1g8pov64 {margin-top: -75px;}
-           
-           /* Global theme styling */
-           .stApp {
-               background-color: white !important;
-               color: #1f2937 !important;
-           }
-           
-           /* Sidebar styling */
-           .css-1d391kg {
-               background-color: #ffffff !important;
-               border-right: 2px solid #3b82f6 !important;
-           }
-           
-           /* Sidebar text styling */
-           .stSidebar .stMarkdown, .stSidebar .stText, .stSidebar p, .stSidebar div, .stSidebar span, .stSidebar label {
-               color: #000000 !important;
-               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-           }
-           
-           /* Comprehensive sidebar white background */
-           .stSidebar {
-               background-color: white !important;
-           }
-           
-           .stSidebar > div {
-               background-color: white !important;
-           }
-           
-           .stSidebar .stMarkdown {
-               background-color: white !important;
-           }
-           
-           /* Sidebar input containers */
-           .stSidebar .stNumberInput > div {
-               background-color: white !important;
-           }
-           
-           .stSidebar .stSelectbox > div {
-               background-color: white !important;
-           }
-           
-           /* Sidebar input labels */
-           .stSidebar .stNumberInput label, .stSidebar .stSelectbox label {
-               color: #000000 !important;
-               font-weight: 500 !important;
-           }
-           
-           /* Text and content styling */
-           .stMarkdown, .stText, p, div, span {
-               color: #1f2937 !important;
-               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-           }
-           
-           /* Headers styling */
-           h1, h2, h3, h4, h5, h6 {
-               color: #1f2937 !important;
-               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-           }
-           
-           /* Button styling */
-           .stButton button {
-               background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
-               color: white !important;
-               border: none !important;
-               border-radius: 8px !important;
-               font-weight: 500 !important;
-               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-           }
-           
-           .stButton button:hover {
-               background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
-               transform: translateY(-1px) !important;
-               box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
-           }
-           
-           /* Input field styling */
-           .stNumberInput input, .stSelectbox select, .stSlider {
-               background-color: white !important;
-               color: #000000 !important;
-               border: 2px solid #e5e7eb !important;
-               border-radius: 8px !important;
-               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-           }
-           
-           .stNumberInput input:focus, .stSelectbox select:focus {
-               border-color: #3b82f6 !important;
-               box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
-               color: #000000 !important;
-           }
-           
-           /* Sidebar specific input styling */
-           .stSidebar .stNumberInput input {
-               color: #000000 !important;
-               background-color: white !important;
-           }
-           
-           /* Metric styling */
-           .metric-container {
-               background: white !important;
-               border: 2px solid #e5e7eb !important;
-               border-radius: 12px !important;
-               padding: 16px !important;
-               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-           }
-           
-           /* Chart styling */
-           .stPlotlyChart {
-               background-color: white !important;
-               border-radius: 12px !important;
-               border: 2px solid #e5e7eb !important;
-               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-           }
-           
-           /* Expander styling */
-           .streamlit-expanderHeader {
-               background-color: #f8fafc !important;
-               color: #1f2937 !important;
-               border: 2px solid #3b82f6 !important;
-               border-radius: 8px !important;
-               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-           }
-           
-           .streamlit-expanderContent {
-               background-color: white !important;
-               border: 2px solid #e5e7eb !important;
-               border-top: none !important;
-               border-radius: 0 0 8px 8px !important;
-           }
-           
-           /* Success/error message styling */
-           .stSuccess {
-               background-color: #f0f9ff !important;
-               color: #1f2937 !important;
-               border-left: 4px solid #3b82f6 !important;
-           }
-           
-           .stError {
-               background-color: #fef2f2 !important;
-               color: #1f2937 !important;
-               border-left: 4px solid #ef4444 !important;
-           }
-           
-           .stWarning {
-               background-color: #fffbeb !important;
-               color: #1f2937 !important;
-               border-left: 4px solid #f59e0b !important;
-           }
-           
-           /* Tab styling */
-           .stTabs [data-baseweb="tab-list"] {
-               background-color: #f8fafc !important;
-               border-radius: 8px !important;
-               border: 2px solid #e5e7eb !important;
-           }
-           
-           .stTabs [data-baseweb="tab"] {
-               color: #1f2937 !important;
-               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-           }
-           
-           .stTabs [aria-selected="true"] {
-               background-color: #3b82f6 !important;
-               color: white !important;
-           }
-           </style>
-           """
+st_style = """
+<style>
+/* Hide Streamlit UI elements */
+#MainMenu, footer, header { visibility: hidden; }
+div.block-container { padding-top: 1rem; }
+button[data-testid="stSidebarCollapseButton"] { display: none !important; }
+
+/* CareSync Design System Variables */
+:root {
+    --primary-blue: #3b82f6;
+    --primary-blue-dark: #1d4ed8;
+    --secondary-blue: #2563eb;
+    --secondary-blue-dark: #1e40af;
+    --text-primary: #1f2937;
+    --text-black: #000000;
+    --bg-white: white;
+    --bg-gray-light: #f8fafc;
+    --border-gray: #e5e7eb;
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Global theme */
+.stApp {
+    background-color: var(--bg-white) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-family) !important;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6, .stMarkdown, .stText, p, div, span {
+    color: var(--text-primary) !important;
+    font-family: var(--font-family) !important;
+}
+
+/* Sidebar styling */
+.stSidebar, .stSidebar > div, .stSidebar .stMarkdown,
+.css-1d391kg, .css-1lcbmhc, .css-17eq0hr {
+    background-color: var(--bg-white) !important;
+}
+
+.css-1d391kg {
+    border-right: 2px solid var(--primary-blue) !important;
+}
+
+.stSidebar .stMarkdown, .stSidebar .stText, .stSidebar p, 
+.stSidebar div, .stSidebar span, .stSidebar label {
+    color: var(--text-black) !important;
+    font-family: var(--font-family) !important;
+}
+
+.stSidebar .stNumberInput > div, .stSidebar .stSelectbox > div {
+    background-color: var(--bg-white) !important;
+}
+
+.stSidebar .stNumberInput label, .stSidebar .stSelectbox label {
+    color: var(--text-black) !important;
+    font-weight: 500 !important;
+}
+
+/* Button styling */
+.stButton button, .stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-family: var(--font-family) !important;
+    transition: all 0.2s ease !important;
+}
+
+.stButton button:hover, .stButton > button[kind="primary"]:hover {
+    background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-blue-dark) 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Input fields */
+.stNumberInput input, .stSelectbox select, .stSlider {
+    background-color: var(--bg-white) !important;
+    color: var(--text-black) !important;
+    border: 2px solid var(--border-gray) !important;
+    border-radius: 8px !important;
+    font-family: var(--font-family) !important;
+}
+
+.stNumberInput input:focus, .stSelectbox select:focus {
+    border-color: var(--primary-blue) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Charts and components */
+.stPlotlyChart {
+    background-color: var(--bg-white) !important;
+    border-radius: 12px !important;
+    border: 2px solid var(--border-gray) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Expanders */
+.streamlit-expanderHeader {
+    background-color: var(--bg-gray-light) !important;
+    color: var(--text-primary) !important;
+    border: 2px solid var(--primary-blue) !important;
+    border-radius: 8px !important;
+    font-family: var(--font-family) !important;
+}
+
+.streamlit-expanderContent {
+    background-color: var(--bg-white) !important;
+    border: 2px solid var(--border-gray) !important;
+    border-top: none !important;
+    border-radius: 0 0 8px 8px !important;
+}
+
+/* Alert messages */
+.stSuccess {
+    background-color: #f0f9ff !important;
+    color: var(--text-primary) !important;
+    border-left: 4px solid var(--primary-blue) !important;
+}
+
+.stError {
+    background-color: #fef2f2 !important;
+    color: var(--text-primary) !important;
+    border-left: 4px solid #ef4444 !important;
+}
+
+.stWarning {
+    background-color: #fffbeb !important;
+    color: var(--text-primary) !important;
+    border-left: 4px solid #f59e0b !important;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    background-color: var(--bg-gray-light) !important;
+    border-radius: 8px !important;
+    border: 2px solid var(--border-gray) !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+    color: var(--text-primary) !important;
+    font-family: var(--font-family) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: var(--primary-blue) !important;
+    color: white !important;
+}
+</style>
+"""
 
 footer = """
     <style>
