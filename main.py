@@ -35,6 +35,10 @@ app(input_data)
 from app.performance import app
 app()
 
+# DB predictions
+from app.db_predictions import app
+app()
+
 # perm_importance
 from app.perm_importance import app
 app()
