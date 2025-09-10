@@ -32,12 +32,16 @@ def initialize_from_url_params():
         st.session_state.setdefault('url_pregnancies', int(query_params['pregnancies']))
     if 'glucose' in query_params:
         st.session_state.setdefault('url_glucose', float(query_params['glucose']))
+    else:
+        st.session_state.setdefault('url_glucose', 100.0)
     if 'bmi' in query_params:
         st.session_state.setdefault('url_bmi', float(query_params['bmi']))
     if 'age' in query_params:
         st.session_state.setdefault('url_age', int(query_params['age']))
     if 'insulin' in query_params:
         st.session_state.setdefault('url_insulin', float(query_params['insulin']))
+    else:
+        st.session_state.setdefault('url_insulin', 100.0)
     if 'auto_predict' in query_params and query_params['auto_predict'] == 'true':
         st.session_state.setdefault('auto_predict_requested', True)
 
@@ -105,9 +109,9 @@ def create_input_form_compact():
         st.markdown("#### Measurements")
         glucose_value = st.number_input(
             'Glucose (mg/dL)', 
-            min_value=0, 
-            max_value=250, 
-            value=st.session_state.get('url_glucose', 100)
+            min_value=0.0, 
+            max_value=250.0, 
+            value=st.session_state.get('url_glucose', 100.0)
         )
         bmi_value = st.number_input(
             'BMI', 
@@ -121,9 +125,9 @@ def create_input_form_compact():
         st.markdown("#### Clinical Data")
         insulin_value = st.number_input(
             'Insulin (μU/mL)', 
-            min_value=0, 
-            max_value=1000, 
-            value=st.session_state.get('url_insulin', 100)
+            min_value=0.0, 
+            max_value=1000.0, 
+            value=st.session_state.get('url_insulin', 100.0)
         )
         
         # Compact reference info
@@ -145,18 +149,18 @@ def create_input_controls(container):
     # Glucose
     glucose_value = container.number_input(
         'Glucose (mg/dL)',
-        min_value=0,
-        max_value=250,
-        value=st.session_state.get('url_glucose', 100),
+        min_value=0.0,
+        max_value=250.0,
+        value=st.session_state.get('url_glucose', 100.0),
         help="Plasma glucose concentration"
     )
 
     # Insulin
     insulin_value = container.number_input(
         'Insulin (μU/mL)',
-        min_value=0,
-        max_value=1000,
-        value=st.session_state.get('url_insulin', 100),
+        min_value=0.0,
+        max_value=1000.0,
+        value=st.session_state.get('url_insulin', 100.0),
         help="2-Hour serum insulin"
     )
 
