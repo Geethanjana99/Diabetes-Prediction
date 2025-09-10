@@ -3,6 +3,9 @@ import pandas as pd
 
 
 def app():
+    # Check for URL parameters and set default values
+    initialize_from_url_params()
+    
     # Check if sidebar should be displayed
     if st.session_state.get('sidebar_state', 'expanded') == 'collapsed':
         # Show panel button when sidebar is collapsed
@@ -18,6 +21,25 @@ def app():
     
     # Show full sidebar when expanded
     return create_sidebar_form()
+
+def initialize_from_url_params():
+    """Initialize input values from URL parameters if provided"""
+    # Get URL parameters
+    query_params = st.query_params
+    
+    # Set default values from URL parameters if available
+    if 'pregnancies' in query_params:
+        st.session_state.setdefault('url_pregnancies', int(query_params['pregnancies']))
+    if 'glucose' in query_params:
+        st.session_state.setdefault('url_glucose', float(query_params['glucose']))
+    if 'bmi' in query_params:
+        st.session_state.setdefault('url_bmi', float(query_params['bmi']))
+    if 'age' in query_params:
+        st.session_state.setdefault('url_age', int(query_params['age']))
+    if 'insulin' in query_params:
+        st.session_state.setdefault('url_insulin', float(query_params['insulin']))
+    if 'auto_predict' in query_params and query_params['auto_predict'] == 'true':
+        st.session_state.setdefault('auto_predict_requested', True)
 
 def create_sidebar_form():
     # Toggle button inside sidebar
@@ -66,17 +88,43 @@ def create_input_form_compact():
     
     with col1:
         st.markdown("#### Basic Info")
-        pregnancies_value = st.number_input('Pregnancies', min_value=0, max_value=20, value=1)
-        age_value = st.number_input('Age (years)', min_value=0, max_value=100, value=25)
+        pregnancies_value = st.number_input(
+            'Pregnancies', 
+            min_value=0, 
+            max_value=20, 
+            value=st.session_state.get('url_pregnancies', 1)
+        )
+        age_value = st.number_input(
+            'Age (years)', 
+            min_value=0, 
+            max_value=100, 
+            value=st.session_state.get('url_age', 25)
+        )
         
     with col2:
         st.markdown("#### Measurements")
-        glucose_value = st.number_input('Glucose (mg/dL)', min_value=0, max_value=250, value=100)
-        bmi_value = st.number_input('BMI', min_value=0.0, max_value=100.0, value=37.0, format="%.1f")
+        glucose_value = st.number_input(
+            'Glucose (mg/dL)', 
+            min_value=0, 
+            max_value=250, 
+            value=st.session_state.get('url_glucose', 100)
+        )
+        bmi_value = st.number_input(
+            'BMI', 
+            min_value=0.0, 
+            max_value=100.0, 
+            value=st.session_state.get('url_bmi', 37.0), 
+            format="%.1f"
+        )
         
     with col3:
         st.markdown("#### Clinical Data")
-        insulin_value = st.number_input('Insulin (μU/mL)', min_value=0, max_value=1000, value=100)
+        insulin_value = st.number_input(
+            'Insulin (μU/mL)', 
+            min_value=0, 
+            max_value=1000, 
+            value=st.session_state.get('url_insulin', 100)
+        )
         
         # Compact reference info
         st.info("**Reference:** Glucose: 70-100 mg/dL")
@@ -90,7 +138,7 @@ def create_input_controls(container):
         'Pregnancies',
         min_value=0,
         max_value=20,
-        value=1,
+        value=st.session_state.get('url_pregnancies', 1),
         help="Number of pregnancies"
     )
 
@@ -99,7 +147,7 @@ def create_input_controls(container):
         'Glucose (mg/dL)',
         min_value=0,
         max_value=250,
-        value=100,
+        value=st.session_state.get('url_glucose', 100),
         help="Plasma glucose concentration"
     )
 
@@ -108,7 +156,7 @@ def create_input_controls(container):
         'Insulin (μU/mL)',
         min_value=0,
         max_value=1000,
-        value=100,
+        value=st.session_state.get('url_insulin', 100),
         help="2-Hour serum insulin"
     )
 
@@ -117,7 +165,7 @@ def create_input_controls(container):
         'BMI',
         min_value=0.0,
         max_value=100.0,
-        value=37.0,
+        value=st.session_state.get('url_bmi', 37.0),
         format="%.1f",
         help="Body Mass Index"
     )
@@ -127,7 +175,7 @@ def create_input_controls(container):
         'Age (years)',
         min_value=0,
         max_value=100,
-        value=25,
+        value=st.session_state.get('url_age', 25),
         help="Patient age"
     )
 

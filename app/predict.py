@@ -7,6 +7,13 @@ from data.base import mrk
 
 
 def app(input_data):
+    # Check if parameters were loaded from URL and show notification
+    if st.session_state.get('auto_predict_requested', False):
+        st.info("🔗 **Parameters loaded from CareSync Admin Panel** - Running diabetes risk assessment with provided clinical data.")
+        # Clear the flag so notification doesn't show again
+        if 'auto_predict_requested' in st.session_state:
+            del st.session_state['auto_predict_requested']
+    
     prediction = model.predict_proba(input_data)[:, 1]
 
     cols = st.columns(2)
